@@ -22,6 +22,7 @@ body {
     font-size: 16px;
     box-sizing: border-box;
     margin-bottom: 60px;
+    /* место для popover */
 }
 
 #btn {
@@ -48,6 +49,11 @@ body {
 .popover {
     position: absolute;
 
+    max-width: 100%;
+    /* 🔥 гарантированно не шире input */
+    width: max-content;
+    /* но подстраивается под текст */
+
     padding: 10px 14px;
     font-size: 14px;
 
@@ -57,26 +63,24 @@ body {
     border: 1px solid #9bcdec;
     border-radius: 6px;
 
-    white-space: nowrap;
     pointer-events: none;
     z-index: 10;
 
     opacity: 0;
+    visibility: hidden;
+
     transform: translateX(-50%);
     left: 50%;
 
-    visibility: hidden;
-    transition: opacity .15s ease;
+    transition: opacity .15s ease, visibility .15s ease;
 }
 
 .popover::after {
     content: "";
     position: absolute;
-
     bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
-
     border-width: 8px 8px 0 8px;
     border-style: solid;
     border-color: #9bcdec transparent transparent transparent;
@@ -85,11 +89,9 @@ body {
 .popover::before {
     content: "";
     position: absolute;
-
     bottom: -7px;
     left: 50%;
     transform: translateX(-50%);
-
     border-width: 7px 7px 0 7px;
     border-style: solid;
     border-color: #d9f1ff transparent transparent transparent;

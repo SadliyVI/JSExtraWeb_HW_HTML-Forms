@@ -4,7 +4,7 @@
 
 import { setupDOM } from "../__mocks__/domMock.js";
 
-describe("index.js UI popover", () => {
+describe("index.js popover behavior", () => {
     beforeEach(() => {
         document.body.innerHTML = "";
         setupDOM();
@@ -12,12 +12,11 @@ describe("index.js UI popover", () => {
     });
 
     test("кнопка создаётся динамически", async () => {
-        const module = await import("../src/index.js");
+        await import("../src/index.js");
 
         const btn = document.getElementById("btn");
-
         expect(btn).not.toBeNull();
-        expect(btn.textContent).toBe("Отправить");
+        expect(btn.textContent).toBe("Click to toggle popover");
     });
 
     test("popover создаётся динамически", async () => {
@@ -28,26 +27,39 @@ describe("index.js UI popover", () => {
         expect(pop.classList.contains("popover")).toBe(true);
     });
 
-    test("popover появляется при наведении", async () => {
+    test("popover появляется по клику на кнопку", async () => {
         await import("../src/index.js");
 
         const btn = document.getElementById("btn");
         const pop = document.getElementById("popover");
 
-        btn.dispatchEvent(new Event("mouseenter"));
-
+        btn.click();
         expect(pop.classList.contains("popover-visible")).toBe(true);
     });
 
-    test("popover скрывается при mouseleave", async () => {
+    test("popover скрывается по повторному клику на кнопку", async () => {
         await import("../src/index.js");
 
         const btn = document.getElementById("btn");
         const pop = document.getElementById("popover");
 
-        btn.dispatchEvent(new Event("mouseenter"));
-        btn.dispatchEvent(new Event("mouseleave"));
+        btn.click(); // показать
+        btn.click(); // скрыть
 
         expect(pop.classList.contains("popover-visible")).toBe(false);
     });
+
+    test("popover скрывается при клике вне кнопки и popover", async () => {
+        await import("../src/index.js");
+
+        const btn = document.getElementById("btn");
+        const pop = document.getElementById("popover");
+
+        btn.click(); // показать
+        document.body.click(); // клик вне
+
+        expect(pop.classList.contains("popover-visible")).toBe(false);
+    });
+
+
 });

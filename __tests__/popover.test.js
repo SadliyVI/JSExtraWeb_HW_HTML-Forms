@@ -9,42 +9,55 @@ describe("Popover class", () => {
 
     beforeEach(() => {
         document.body.innerHTML = `
-            <button id="btn">Test</button>
+            <div class="container">
+                <input id="input" type="text" />
+                <button id="btn">Test</button>
+            </div>
         `;
         button = document.getElementById("btn");
+
+        button.getBoundingClientRect = () => ({
+            top: 200,
+            bottom: 230,
+            left: 100,
+            right: 200,
+            width: 100,
+            height: 30
+        });
     });
 
-    test("popover создаётся при первом вызове show()", () => {
+    test("popover создаётся и показывается через show()", () => {
         const pop = new Popover(button, "Hello");
-
         pop.show();
 
-        const created = document.querySelector(".popover");
-        expect(created).not.toBeNull();
-        expect(created.textContent).toBe("Hello");
+        expect(pop.popover).not.toBeNull();
+        expect(pop.popover.style.display).toBe("block");
     });
 
-    test("вызов hide() скрывает popover", () => {
+    test("popover скрывается через hide()", () => {
         const pop = new Popover(button, "Hello");
         pop.show();
-
         pop.hide();
 
-        expect(pop.pop.style.display).toBe("none");
+        expect(pop.popover.style.display).toBe("none");
     });
 
-    test("toggle() показывает popover, если он скрыт", () => {
+    test("toggle() показывает и скрывает popover", () => {
         const pop = new Popover(button, "Hello");
-        pop.toggle();
 
-        expect(pop.pop.style.display).toBe("block");
+        pop.toggle();
+        expect(pop.popover.style.display).toBe("block");
+
+        pop.toggle();
+        expect(pop.popover.style.display).toBe("none");
     });
 
-    test("toggle() скрывает popover, если он показан", () => {
+    test("popover скрывается при клике вне кнопки", () => {
         const pop = new Popover(button, "Hello");
-        pop.toggle();
-        pop.toggle();
+        pop.show();
 
-        expect(pop.pop.style.display).toBe("none");
+        document.body.click();
+
+        expect(pop.popover.style.display).toBe("none");
     });
 });
