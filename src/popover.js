@@ -18,7 +18,7 @@ export default class Popover {
         div.className = "popover";
         div.textContent = this.message;
 
-        document.body.appendChild(div);
+        document.body.append(div);
         this.popover = div;
     }
 
@@ -28,10 +28,8 @@ export default class Popover {
         const btnRect = this.button.getBoundingClientRect();
         const popRect = this.popover.getBoundingClientRect();
 
-        // Центрирование
         const left = btnRect.left + btnRect.width / 2 - popRect.width / 2;
 
-        // Проверяем место сверху
         const enoughSpaceAbove = btnRect.top - popRect.height - 10 > 0;
 
         const top = enoughSpaceAbove
@@ -41,7 +39,6 @@ export default class Popover {
         this.popover.style.left = `${left}px`;
         this.popover.style.top = `${top}px`;
 
-        // Добавим класс для стрелки (верх/низ)
         this.popover.dataset.position = enoughSpaceAbove ? "top" : "bottom";
     }
 

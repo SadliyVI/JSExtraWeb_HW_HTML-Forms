@@ -1,7 +1,5 @@
 export function setupDOM() {
     document.body.innerHTML = `
-        <div class="container">
-            <input id="input" type="text" placeholder="Popover title">
-        </div>
+        <div class="container"></div>
     `;
 }

@@ -16,19 +16,10 @@ body {
     align-items: center;
 }
 
-#input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    box-sizing: border-box;
-    margin-bottom: 60px;
-    /* место для popover */
-}
-
 #btn {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    font-size: 18px;
     background: #d9534f;
     color: #fff;
     border: none;
@@ -48,53 +39,29 @@ body {
 
 .popover {
     position: absolute;
-
     max-width: 100%;
-    /* 🔥 гарантированно не шире input */
     width: max-content;
-    /* но подстраивается под текст */
-
-    padding: 10px 14px;
-    font-size: 14px;
-
     background: #d9f1ff;
     color: #123b56;
-
     border: 1px solid #9bcdec;
     border-radius: 6px;
-
     pointer-events: none;
     z-index: 10;
-
     opacity: 0;
     visibility: hidden;
-
     transform: translateX(-50%);
     left: 50%;
-
     transition: opacity .15s ease, visibility .15s ease;
 }
 
-.popover::after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 8px 8px 0 8px;
-    border-style: solid;
-    border-color: #9bcdec transparent transparent transparent;
+.popover-title {
+    font-weight: bold;
+    padding: 8px 12px;
+    border-bottom: 1px solid #9bcdec;
 }
 
-.popover::before {
-    content: "";
-    position: absolute;
-    bottom: -7px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 7px 7px 0 7px;
-    border-style: solid;
-    border-color: #d9f1ff transparent transparent transparent;
+.popover-text {
+    padding: 8px 12px;
 }
 
 .popover-visible {

@@ -43,8 +43,8 @@ describe("index.js popover behavior", () => {
         const btn = document.getElementById("btn");
         const pop = document.getElementById("popover");
 
-        btn.click(); // показать
-        btn.click(); // скрыть
+        btn.click();
+        btn.click();
 
         expect(pop.classList.contains("popover-visible")).toBe(false);
     });
@@ -55,8 +55,8 @@ describe("index.js popover behavior", () => {
         const btn = document.getElementById("btn");
         const pop = document.getElementById("popover");
 
-        btn.click(); // показать
-        document.body.click(); // клик вне
+        btn.click();
+        document.body.click();
 
         expect(pop.classList.contains("popover-visible")).toBe(false);
     });

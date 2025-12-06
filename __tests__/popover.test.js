@@ -10,7 +10,6 @@ describe("Popover class", () => {
     beforeEach(() => {
         document.body.innerHTML = `
             <div class="container">
-                <input id="input" type="text" />
                 <button id="btn">Test</button>
             </div>
         `;
