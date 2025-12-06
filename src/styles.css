@@ -64,6 +64,17 @@ body {
     padding: 8px 12px;
 }
 
+.popover::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0 10px;
+    border-style: solid;
+    border-color: #9bcdec transparent transparent transparent;
+}
+
 .popover-visible {
     opacity: 1;
     visibility: visible;
