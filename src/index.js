@@ -1,8 +1,20 @@
 import "./styles.css";
 
+const btn = document.createElement("button");
+btn.id = "btn";
+btn.textContent = "Click to toggle popover";
+
+
+const pop = document.createElement("div");
+pop.id = "popover";
+pop.className = "popover";
+pop.textContent = "And here's some amazing content. It's very engaging. Right?";
+
+const container = document.querySelector(".container");
+container.appendChild(btn);
+container.appendChild(pop);
+
 const input = document.getElementById("input");
-const btn = document.getElementById("btn");
-const pop = document.getElementById("popover");
 
 function positionPopover() {
     const popHeight = pop.offsetHeight;
